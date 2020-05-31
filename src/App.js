@@ -9,7 +9,6 @@ import { onError } from "./libs/errorLib";
 import "./App.css";
 
 export default function App() {
-
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
 
@@ -33,7 +32,6 @@ export default function App() {
     await Auth.signOut();
     userHasAuthenticated(false);
     // history.push("/login");
-
   }
 
   return (
@@ -52,7 +50,12 @@ export default function App() {
             <Nav pullRight>
               <BrowserRouter>
                 {isAuthenticated ? (
-                  <NavItem onClick={handleLogout}>Logout</NavItem>
+                  <>
+                    <LinkContainer to="/settings">
+                      <NavItem>Settings</NavItem>
+                    </LinkContainer>
+                    <NavItem onClick={handleLogout}>Logout</NavItem>
+                  </>
                 ) : (
                   <>
                     <LinkContainer to="/signup">
